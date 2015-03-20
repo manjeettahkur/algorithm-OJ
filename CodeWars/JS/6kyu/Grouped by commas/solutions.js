@@ -1,4 +1,4 @@
 function groupByCommas(n) {
-  return String(n).replace(/(\d{3})/g, ',$`');
+  return String(n).split("").reverse().join("").replace(/(\d{3})(?=[^$])/g, "$1,").split("").reverse().join("");
 }
 

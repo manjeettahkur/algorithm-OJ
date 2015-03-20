@@ -17,5 +17,14 @@ Finish the solution so that it takes an input 'n' (integer) and returns a string
 
 ## Solutions
 ### 1-my answer
-
+```
+function groupByCommas(n) {
+  return String(n).split("").reverse().join("").replace(/(\d{3})(?=[^$])/g, "$1,").split("").reverse().join("");
+}
+```
 ### 2-Best Practices
+```
+function groupByCommas(n) {
+  return String(n).replace(/(?=(?!^)(?:\d{3})+(?:\.|$))(\d{3}(\.\d+$)?)/g,',$1');
+} 
+```
