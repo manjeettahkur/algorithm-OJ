@@ -22,9 +22,15 @@ function groupByCommas(n) {
   return String(n).split("").reverse().join("").replace(/(\d{3})(?=[^$])/g, "$1,").split("").reverse().join("");
 }
 ```
+
+### 2- another
+```
+return String(n).replace(/(?=(?!^)(?:\d{3})+(?:\.|$))(\d{3}(\.\d+$)?)/g,',$1');
+```
+
 ### 2-Best Practices
 ```
 function groupByCommas(n) {
-  return String(n).replace(/(?=(?!^)(?:\d{3})+(?:\.|$))(\d{3}(\.\d+$)?)/g,',$1');
+  return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 } 
 ```
