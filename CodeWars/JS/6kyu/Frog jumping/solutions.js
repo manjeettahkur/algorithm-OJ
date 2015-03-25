@@ -1,13 +1,11 @@
 function solution(a) {
-  //Your code here
-  var aLen = a.length;
-  var sum = 0;
-
-  if (aLen < 1) return -1;
-  for (var i = 0; i < aLen; i++) {
-    sum += a[i];
-    if (sum > aLen) return i+1;
+  var steps = 0, n = 0;
+  if (!a[0]) return -1;
+  
+  while (a[n]) {
+    n += a[n];
+    steps++;
+    if (steps > 100) return -1;
   }
-
-  return -1;
+  return steps;
 }
