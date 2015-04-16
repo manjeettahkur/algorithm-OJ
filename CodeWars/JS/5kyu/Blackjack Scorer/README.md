@@ -22,7 +22,45 @@ scoreHand(["5", "4", "3", "2", "A", "K"]); //=> 25
 
 参数是一个数组，可选的值为"2",...,"10", "J", "Q", "K", "A"， 输出牌里组合起来最接近21的点数。花牌当中，J,Q,K当做点数10处理，A当做点数1或者11处理。
 
-
+### 思路
+优先将数字和除了A部分相加起来，因为这是固定的。最后再去加A,A优先以最小情况的加，如果是最后一个，需要搏一搏，所以先加大的情况看看，不行再加小的。。。
 
 ## Solutions
 ### 1-My Answer
+见solutions.js
+
+### 2-Best Practices
+```
+/**
+ * @param cards An array of strings representing each card
+ * @returns number Score of the hand
+ */
+function scoreHand(cards){
+  var aces = 0;
+  return cards.map(function(x){
+        if(["J","Q","K"].indexOf(x) !== -1) return 10;
+        else if (x === "A") {aces++; return 11;}
+        else return Number(x);
+    }).reduce(function(a,b){
+        while(aces>0 && a+b>21) {
+        b -= 10; aces--;
+        }
+        return a + b}
+    );
+}
+```
+
+### 3-Clever
+```
+function scoreHand(cards) {
+  var aces = 0
+    , score = cards.reduce(function (s, c) {
+        if (c === 'A') { aces++; return s + 11 }
+        return /\d/.test(c) ? s + parseInt(c) : s + 10
+      }, 0)
+  while (aces-- && score > 21) score -= 10
+  return score
+}
+```
+
+牛逼啊！
