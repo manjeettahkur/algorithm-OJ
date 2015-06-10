@@ -9,10 +9,22 @@ Here's the slightly tricky part: These are text messages, so there are different
 
 For the purposes of this kata, here's what you need to support:
 
-"youuuuu" with any number of u characters tacked onto the end
-"u" at the beginning, middle, or end of a string, but NOT part of a word
-"you" but NOT as part of another word like youtube or bayou
+- "youuuuu" with any number of u characters tacked onto the end
+- "u" at the beginning, middle, or end of a string, but NOT part of a word
+- "you" but NOT as part of another word like youtube or bayou
 
 ## 题目分析
+字符串替换问题，考虑把所有的`you`和`u`替换为`your sister.`, 包含如下情况:
+
+- `youuuuu`, 末尾含有多个`u`的情况
+- `u`在字符的前后中，但不是一个单词的一部分
+- `you`但是不包含在另一个单词中
 
 ## Solution
+```
+function autocorrect(input){
+  var autocorrectReg = /\b(you+|u)\b/gi;
+
+  return input.place(autocorrectReg, "you sister");
+}
+```
