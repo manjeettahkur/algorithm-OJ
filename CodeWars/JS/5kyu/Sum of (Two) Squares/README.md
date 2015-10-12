@@ -15,3 +15,10 @@ Here are the requirements:
 - We will consider 5,0 and 0,5 to be equal pairs, disregarding the order. Do not list the same pair twice.
 - The upper bound of the parameter value will be 2,147,483,647
 
+## 解读
+此题输入项为一个整数，要求计算出可通过平方和得到次数的整数对。比如25, 可分解为: [[0,5], [3,4]]。
+
+逻辑上需要简化循环的次数，减少计算量。
+
+## 解题思路
+先讨论出最大可利用的整数范围，`Math.sqrt(num/2)`。然后从0开始遍历，计算出剩余的数值，看是否是一个整数的平方。
