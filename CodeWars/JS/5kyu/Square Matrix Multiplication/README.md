@@ -35,4 +35,24 @@ Link to Wikipedia explaining matrix multiplication (look at the square matrix ex
 http://en.wikipedia.org/wiki/Matrix_multiplication#Examples_2
 
 ## 解读
-此题目要求计算两个矩阵相乘的结果。
+此题目要求计算两个矩阵相乘的结果。矩阵都是n*n大小。需要遍历求值。
+
+解法上，低端的就是for循环遍历，针对多维数组，每次需要使用`new Array`创建新数组。
+
+高阶一点的就需要使用`Array.map`和`Array.reduce`。回调函数中自身就是一个数组。
+
+
+
+
+## Clever
+```
+function matrixMultiplication(a,b){
+  return a.map(function(row){
+      return row.map(function(_,i){
+          return row.reduce(function(sum,cell,j){
+              return sum+cell*b[j][i];
+          },0);
+      });
+  });
+}
+```
